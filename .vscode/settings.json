@@ -37,9 +37,11 @@
         "**/log": true
     },
     "cSpell.words": [
-        "RTPS",
         "athackst",
         "autopep",
+        "Bittle",
+        "bringup",
+        "clyderos",
         "cmake",
         "cppcheck",
         "cpplint",
@@ -48,6 +50,7 @@
         "devcontainer",
         "ints",
         "noqa",
+        "Petoi",
         "pytest",
         "rclcpp",
         "rclpy",
@@ -56,6 +59,7 @@
         "rosdistro",
         "rosidl",
         "RTPS",
+        "teleop",
         "uncrustify",
         "Wextra",
         "Wpedantic",
