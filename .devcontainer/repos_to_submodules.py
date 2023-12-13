@@ -30,8 +30,8 @@ def parse_repos_file(file_path):
                     add_git_submodule(submodule_name, repo_url, repo_version)
                     print(f"Added {repo_name} as a submodule.")
 
-# Find .repos files within the src directory
-repos_files = glob.glob('src/**/*.repos', recursive=True)
+# Find .repos files within the overall directory
+repos_files = glob.glob('*.repos', recursive=True)
 
 # Process each .repos file
 for repos_file in repos_files:
