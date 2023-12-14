@@ -13,10 +13,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='ros',
+    maintainer='GroupC',
     maintainer_email='peter.lacaze.2019@uni.strath.ac.uk',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Package for body motion planning and gait generation',
+    license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
