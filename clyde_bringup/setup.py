@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='ros',
     maintainer_email='peter.lacaze.2019@uni.strath.ac.uk',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Contains launch files used in all the other packages',
+    license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
