@@ -3,9 +3,6 @@
 
 Using a Petoi Bittle for the implementation, with a Raspberry Pi Zero 2W relaying information to an external PC, both running ROS 2. [Credit](https://www.allisonthackston.com/articles/vscode_docker_ros2.html) for the template.
 
-See pi container:
-https://github.com/el-geuse/clyderos2_pi
-
 ## Folder Breakdown
 Packages broken down in a pretty standard way:
 
