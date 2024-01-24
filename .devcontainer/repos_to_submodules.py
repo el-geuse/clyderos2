@@ -24,7 +24,8 @@ def parse_repos_file(file_path):
             if 'type' in repo_info and repo_info['type'] == 'git':
                 repo_url = repo_info['url']
                 repo_version = repo_info['version']
-                submodule_name = os.path.join(prefix, repo_name)
+                # submodule_name = os.path.join(prefix, repo_name)
+                submodule_name = repo_name
 
                 if not is_submodule(submodule_name):
                     add_git_submodule(submodule_name, repo_url, repo_version)
