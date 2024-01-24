@@ -191,35 +191,35 @@
             "label": "new ament_cmake package",
             "detail": "Create a new ROS cpp package from a template.",
             "type": "shell",
-            "command": "ros2 pkg create --build-type ament_cmake ${input:package}",
+            "command": "ros2 pkg create --destination-directory src --build-type ament_cmake ${input:package}",
             "problemMatcher": []
         },
         {
             "label": "new ament_python package",
             "detail": "Create a new ROS python package from a template.",
             "type": "shell",
-            "command": "ros2 pkg create --build-type ament_python ${input:package}",
+            "command": "ros2 pkg create --destination-directory src --build-type ament_python ${input:package}",
             "problemMatcher": []
         },
         {
             "label": "import from workspace file",
             "detail": "Use vcs to import modules specified by a workspace/rosinstall file.",
             "type": "shell",
-            "command": "vcs import < src/ros2.repos src",
+            "command": "vcs import < submodules/ros2.repos src",
             "problemMatcher": []
         },
         {
             "label": "update workspace file",
             "detail": "Use vcs to update repositories in src to workspace file.",
             "type": "shell",
-            "command": "vcs export **/src > ros2.repos",
+            "command": "vcs export **/src > submodules/ros2.repos",
             "problemMatcher": []
         },
         {
             "label": "install dependencies",
             "detail": "Install all dependencies specified in the workspaces package.xml files.",
             "type": "shell",
-            "command": "sudo apt-get update && rosdep update && rosdep install --ignore-src -y",
+            "command": "sudo apt-get update && rosdep update && rosdep install --from-paths src --ignore-src -y",
             "problemMatcher": []
         },
         {
