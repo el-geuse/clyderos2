@@ -3,7 +3,7 @@ import os
 import subprocess
 import yaml
 
-prefix="src"
+prefix="submodules"
 
 def add_git_submodule(repo_name, repo_url, repo_version):
     subprocess.call(['git', 'submodule', 'add', '-b', repo_version, repo_url, repo_name])
@@ -24,8 +24,7 @@ def parse_repos_file(file_path):
             if 'type' in repo_info and repo_info['type'] == 'git':
                 repo_url = repo_info['url']
                 repo_version = repo_info['version']
-                # submodule_name = os.path.join(prefix, repo_name)
-                submodule_name = repo_name
+                submodule_name = os.path.join(prefix, repo_name)
 
                 if not is_submodule(submodule_name):
                     add_git_submodule(submodule_name, repo_url, repo_version)
