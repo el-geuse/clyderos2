@@ -49,6 +49,7 @@
         "deque",
         "devcontainer",
         "ints",
+        "kbalance",
         "noqa",
         "Petoi",
         "pytest",
