@@ -1,4 +1,0 @@
-[submodule "submodules/serial"]
-	path = submodules/serial
-	url = https://github.com/wjwwood/serial.git
-	branch = ros2
