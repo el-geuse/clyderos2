@@ -3,8 +3,10 @@ from launch.substitutions import Command, LaunchConfiguration
 import launch_ros
 import os
 
+
 def generate_launch_description():
-    pkg_share = launch_ros.substitutions.FindPackageShare(package='clyde_description').find('clyde_description')
+    pkg_share = launch_ros.substitutions.FindPackageShare(package='clyde_description')\
+        .find('clyde_description')
     default_model_path = os.path.join(pkg_share, 'src/urdf/clyde.urdf')
     default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config.rviz')
 
@@ -36,11 +38,13 @@ def generate_launch_description():
 
     return launch.LaunchDescription([
         launch.actions.DeclareLaunchArgument(name='gui', default_value='True',
-                                            description='Flag to enable joint_state_publisher_gui'),
+                                             description='Flag to enable \
+                                             joint_state_publisher_gui'),
         launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
-                                            description='Absolute path to robot urdf file'),
-        launch.actions.DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
-                                            description='Absolute path to rviz config file'),
+                                             description='Absolute path to robot urdf file'),
+        launch.actions.DeclareLaunchArgument(name='rvizconfig',
+                                             default_value=default_rviz_config_path,
+                                             description='Absolute path to rviz config file'),
         joint_state_publisher_node,
         joint_state_publisher_gui_node,
         robot_state_publisher_node,
