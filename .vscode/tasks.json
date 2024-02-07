@@ -235,6 +235,13 @@
             "type": "shell",
             "command": "python3 .devcontainer/repos_to_submodules.py",
             "problemMatcher": []
+        },
+        {
+            "label": "source package",
+            "detail": "Sources the current package",
+            "type": "shell",
+            "command": "source ./install/setup.bash",
+            "problemMatcher": []
         }
     ],
     "inputs": [
