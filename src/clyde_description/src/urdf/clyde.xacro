@@ -5,9 +5,12 @@
 <xacro:include filename="$(find clyde_description)/src/urdf/clyde.trans" />
 <xacro:include filename="$(find clyde_description)/src/urdf/clyde.gazebo" />
 
+<link name="dummy">
+</link>
+
 <link name="base_link">
   <inertial>
-    <origin xyz="0.002168345924058267 4.1430032450566535e-08 0.02555254458454454" rpy="0 0 0"/>
+    <origin xyz="0.002168345924058267 4.1430032450566535e-  08 0.02555254458454454" rpy="0 0 0"/>
     <mass value="0.01989030949409733"/>
     <inertia ixx="1.5e-05" iyy="2.4e-05" izz="3.8e-05" ixy="0.0" iyz="0.0" ixz="-0.0"/>
   </inertial>
@@ -25,6 +28,8 @@
     </geometry>
   </collision>
 </link>
+
+<link name="base_footprint"/>
 
 <link name="front__1">
   <inertial>
@@ -1830,6 +1835,17 @@
     </geometry>
   </collision>
 </link>
+
+<joint name="dummy_joint" type="fixed">
+  <parent link="dummy"/>
+  <child link="base_link"/>
+</joint>
+
+<joint name="base_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="base_footprint"/>
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+</joint>
 
 <joint name="Rigid 1" type="fixed">
   <origin xyz="0.061733 -0.028 0.025792" rpy="0 0 0"/>
