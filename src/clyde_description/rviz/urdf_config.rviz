@@ -34,9 +34,9 @@ Visualization Manager:
       Enabled: true
       Name: TF
       Marker Scale: 0.3
-      Show Arrows: true
-      Show Axes: true
-      Show Names: true
+      Show Arrows: false
+      Show Axes: false
+      Show Names: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
