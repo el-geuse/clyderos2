@@ -948,7 +948,7 @@
 </joint>
 
 <joint name="neck_joint" type="continuous">
-  <origin xyz="0.00265 0.0 0.00459" rpy="0 0 0"/>
+  <origin xyz="0.00265 0.0 0.00459" rpy="0.32814212668464987 -0.10093359552132034 0.5922309969483743"/>
   <parent link="c_neck__1"/>
   <child link="servo_neck__1"/>
   <axis xyz="-0.5 -0.0 -0.866025"/>
