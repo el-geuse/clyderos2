@@ -1,7 +1,8 @@
-import launch
-from launch.substitutions import Command, LaunchConfiguration
-import launch_ros
 import os
+import launch
+import launch_ros
+from launch.substitutions import Command, LaunchConfiguration
+
 
 
 def generate_launch_description():
@@ -35,6 +36,14 @@ def generate_launch_description():
         output='screen',
         arguments=['-d', LaunchConfiguration('rvizconfig')],
     )
+    gz = launch.actions.ExecuteProcess(
+        cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so',
+            'src/clyde_description/src/worlds/new-env0'],
+        output='screen'
+    )
+    spawn_entity = launch_ros.actions.Node(package='gazebo_ros', executable='spawn_entity.py',
+        arguments=['-file', 'src/clyde_description/src/urdf/clyde_simple.urdf', '-entity', 'clyde'],
+        output='screen')
 
     return launch.LaunchDescription([
         launch.actions.DeclareLaunchArgument(name='gui', default_value='True',
@@ -48,6 +57,8 @@ def generate_launch_description():
         joint_state_publisher_node,
         joint_state_publisher_gui_node,
         robot_state_publisher_node,
-        rviz_node
+        rviz_node,
+        gz,
+        spawn_entity
     ])
     
