@@ -2,7 +2,7 @@
 ## EM501 Project
 ### Group C
 
-Master's Thesis group project working on creating a quadruped that can be used in elderly care for fall detection and supervision! Built using ROS 2, with a Raspberry Pi Zero 2W attached to the quadruped frame, issuing data to the master pc.
+Master's Thesis group project working on creating a quadruped capable of use in elderly care, specifically fall detection and autonomous supervision. Built using ROS 2, with a Raspberry Pi Zero 2W attached to the quadruped frame, issuing data to the master pc.
 
 ## Folder Breakdown
 Packages broken down in a pretty standard way:
@@ -21,3 +21,8 @@ Packages broken down in a pretty standard way:
 6. **`clyde_msgs`** : Package detailing all messages defined within the system.
 7. **`clyde_nav`** : Code used for autonomous navigation.
 8. **`clyde_teleop`** : Code for basic control using a controller.
+
+## Building
+
+
+ # Launching
