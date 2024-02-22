@@ -13,7 +13,7 @@
   </inertial>
 </xacro:macro>
 
-<xacro:property name="camera_link" value="0.05" />
+<xacro:property name="camera_link" value="0.01" />
 
 <link name="base_link">
   <inertial>
@@ -24,14 +24,14 @@
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -63,7 +63,7 @@
 
 <joint name="camera_joint" type="fixed">
   <axis xyz="0 1 0" />
-  <origin xyz="${camera_link} 0 0" rpy="-0.32814212668464987 0.10093359552132034 -0.5922309969483743"/>
+  <origin xyz="${camera_link} 0.020 0.015" rpy="-0.32814212668464987 0.10093359552132034 -0.5922309969483743"/>
   <parent link="head__1"/>
   <child link="camera_link"/>
 </joint>
@@ -77,14 +77,14 @@
   <visual>
     <origin xyz="-0.061733 0.028 -0.025792" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/front__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/front__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.061733 0.028 -0.025792" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/front__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/front__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -98,14 +98,14 @@
   <visual>
     <origin xyz="0.061733 -0.028 -0.025792" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/rear__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/rear__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.061733 -0.028 -0.025792" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/rear__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/rear__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -119,14 +119,14 @@
   <visual>
     <origin xyz="-0.059645 0.036 -0.017875" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_rfs_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_rfs_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.059645 0.036 -0.017875" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_rfs_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_rfs_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -140,14 +140,14 @@
   <visual>
     <origin xyz="0.059645 0.036 -0.017875" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_rrs__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_rrs__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.059645 0.036 -0.017875" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_rrs__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_rrs__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -161,14 +161,14 @@
   <visual>
     <origin xyz="-0.044904 -0.0 -0.031351" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_neck__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_neck__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.044904 -0.0 -0.031351" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_neck__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_neck__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -182,14 +182,14 @@
   <visual>
     <origin xyz="-0.055711 0.017155 -0.060327" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/head__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/head__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.055711 0.017155 -0.060327" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/head__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/head__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -203,14 +203,14 @@
   <visual>
     <origin xyz="-0.06445 0.012925 -0.034027" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/jaw_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/jaw_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.06445 0.012925 -0.034027" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/jaw_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/jaw_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -224,14 +224,14 @@
   <visual>
     <origin xyz="-0.038977 0.050355 -0.018377" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tho_rf__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tho_rf__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.038977 0.050355 -0.018377" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tho_rf__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tho_rf__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -245,14 +245,14 @@
   <visual>
     <origin xyz="-0.047554 -0.0 -0.035941" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_neck__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_neck__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.047554 -0.0 -0.035941" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_neck__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_neck__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -266,14 +266,14 @@
   <visual>
     <origin xyz="-0.02915 0.052607 -0.02028" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tube__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tube__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.02915 0.052607 -0.02028" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tube__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tube__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -287,14 +287,14 @@
   <visual>
     <origin xyz="-0.0525 0.0508 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/th_rf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/th_rf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.0525 0.0508 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/th_rf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/th_rf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -308,14 +308,14 @@
   <visual>
     <origin xyz="-0.008067 0.054937 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thorf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thorf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.008067 0.054937 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thorf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thorf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -329,14 +329,14 @@
   <visual>
     <origin xyz="-0.059645 -0.036 -0.017875" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_lfs_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_lfs_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.059645 -0.036 -0.017875" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_lfs_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_lfs_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -350,14 +350,14 @@
   <visual>
     <origin xyz="0.059645 -0.036 -0.017875" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_lrs__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_lrs__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.059645 -0.036 -0.017875" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servo_lrs__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servo_lrs__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -371,14 +371,14 @@
   <visual>
     <origin xyz="-0.0525 0.0485 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thrf__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thrf__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.0525 0.0485 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thrf__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thrf__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -392,14 +392,14 @@
   <visual>
     <origin xyz="0.000151 0.03958 -0.010813" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/shank_rf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/shank_rf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.000151 0.03958 -0.010813" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/shank_rf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/shank_rf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -413,14 +413,14 @@
   <visual>
     <origin xyz="-0.008067 0.04708 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servos_rf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servos_rf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.008067 0.04708 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servos_rf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servos_rf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -434,14 +434,14 @@
   <visual>
     <origin xyz="0.066023 0.050355 -0.018377" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tho_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tho_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.066023 0.050355 -0.018377" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tho_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tho_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -455,14 +455,14 @@
   <visual>
     <origin xyz="0.07585 0.052607 -0.02028" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tube_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tube_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.07585 0.052607 -0.02028" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tube_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tube_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -476,14 +476,14 @@
   <visual>
     <origin xyz="0.0525 0.0508 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/th_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/th_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.0525 0.0508 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/th_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/th_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -497,14 +497,14 @@
   <visual>
     <origin xyz="0.096933 0.054937 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thorr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thorr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.096933 0.054937 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thorr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thorr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -518,14 +518,14 @@
   <visual>
     <origin xyz="0.105151 0.03958 -0.010813" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/shank_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/shank_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.105151 0.03958 -0.010813" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/shank_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/shank_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -539,14 +539,14 @@
   <visual>
     <origin xyz="0.0525 0.0485 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thrr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thrr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.0525 0.0485 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thrr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thrr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -560,14 +560,14 @@
   <visual>
     <origin xyz="0.096933 0.04708 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servos_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servos_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.096933 0.04708 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servos_rr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servos_rr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -581,14 +581,14 @@
   <visual>
     <origin xyz="-0.038977 -0.050355 -0.018377" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tho_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tho_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.038977 -0.050355 -0.018377" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tho_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tho_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -602,14 +602,14 @@
   <visual>
     <origin xyz="-0.02915 -0.052607 -0.02028" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tube_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tube_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.02915 -0.052607 -0.02028" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tube_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tube_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -623,14 +623,14 @@
   <visual>
     <origin xyz="-0.0525 -0.0508 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/th_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/th_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.0525 -0.0508 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/th_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/th_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -644,14 +644,14 @@
   <visual>
     <origin xyz="-0.008067 -0.054937 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_tholf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_tholf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.008067 -0.054937 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_tholf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_tholf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -665,14 +665,14 @@
   <visual>
     <origin xyz="0.000151 -0.039582 -0.010813" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/shank_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/shank_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.000151 -0.039582 -0.010813" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/shank_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/shank_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -686,14 +686,14 @@
   <visual>
     <origin xyz="-0.0525 -0.0485 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thlf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thlf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.0525 -0.0485 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thlf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thlf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -707,14 +707,14 @@
   <visual>
     <origin xyz="-0.008067 -0.04708 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servos_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servos_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.008067 -0.04708 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servos_lf_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servos_lf_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -728,14 +728,14 @@
   <visual>
     <origin xyz="0.066023 -0.050357 -0.018377" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tho_lr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tho_lr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.066023 -0.050357 -0.018377" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tho_lr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tho_lr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -749,14 +749,14 @@
   <visual>
     <origin xyz="0.07585 -0.052609 -0.02028" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tube_lr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tube_lr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.07585 -0.052609 -0.02028" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/tube_lr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/tube_lr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -770,14 +770,14 @@
   <visual>
     <origin xyz="0.0525 -0.050802 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/th_lr__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/th_lr__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.0525 -0.050802 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/th_lr__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/th_lr__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -791,14 +791,14 @@
   <visual>
     <origin xyz="0.096933 -0.054939 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_tholr__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_tholr__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.096933 -0.054939 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_tholr__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_tholr__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -812,14 +812,14 @@
   <visual>
     <origin xyz="0.105151 -0.039582 -0.010813" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/shank_lr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/shank_lr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.105151 -0.039582 -0.010813" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/shank_lr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/shank_lr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -833,14 +833,14 @@
   <visual>
     <origin xyz="0.0525 -0.0485 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thlr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thlr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.0525 -0.0485 -0.022" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/c_thlr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/c_thlr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -854,14 +854,14 @@
   <visual>
     <origin xyz="0.096933 -0.047082 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servos_lr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servos_lr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.096933 -0.047082 -0.010094" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/servos_lr_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/servos_lr_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -875,14 +875,14 @@
   <visual>
     <origin xyz="0.0 0.031 -0.030939" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/cover_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/cover_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.0 0.031 -0.030939" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/cover_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/cover_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -896,14 +896,14 @@
   <visual>
     <origin xyz="0.01725 -0.0 -0.023892" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/battery_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/battery_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.01725 -0.0 -0.023892" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://clyde_description/src/meshes/battery_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find clyde_description)/src/models/clyde_model/meshes/battery_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
