@@ -7,6 +7,9 @@
   <material name="silver">
     <color rgba="0.700 0.700 0.700 1.000"/>
   </material>
+  <material name="red">
+    <color rgba="1.000 0.000 0.000 1.000"/>
+  </material>
   <transmission name="neck_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="neck_joint">
