@@ -48,6 +48,8 @@
         "DCMAKE",
         "deque",
         "devcontainer",
+        "gzclient",
+        "gzserver",
         "ints",
         "kbalance",
         "noqa",
