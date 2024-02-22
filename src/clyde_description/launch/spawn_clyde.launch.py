@@ -9,7 +9,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 def generate_launch_description():
 
   use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-  urdf_file_name = 'src/urdf/clyde_simple.urdf'
+  urdf_file_name = 'src/urdf/clyde_simple.sdf'
 
   print("urdf_file_name : {}".format(urdf_file_name))
 

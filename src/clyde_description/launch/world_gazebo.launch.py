@@ -12,10 +12,10 @@ def generate_launch_description():
   pkg_gazebo_ros = FindPackageShare(package='gazebo_ros').find('gazebo_ros')   
    
   # Set the path to this package.
-  pkg_share = FindPackageShare(package='clyderos2').find('clyde_description')
+  pkg_share = FindPackageShare(package='clyde_description').find('clyde_description')
  
   # Set the path to the world file
-  world_file_name = 'test-env2'
+  world_file_name = 'new-env0'
   world_path = os.path.join(pkg_share, 'src/worlds/', world_file_name)
    
   # Set the path to the SDF model files.
