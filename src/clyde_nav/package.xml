@@ -5,6 +5,7 @@
   <version>0.0.0</version>
   <description>Code used for autonomous navigation</description>
   <maintainer email="peter.lacaze.2019@uni.strath.ac.uk">GroupC</maintainer>
+  <maintainer email="josef.manlutac.2019@uni.strath.ac.uk">jsble</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
