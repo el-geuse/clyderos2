@@ -15,7 +15,7 @@ def generate_launch_description():
   pkg_share = FindPackageShare(package='clyde_description').find('clyde_description')
  
   # Set the path to the world file
-  world_file_name = 'world-env0'
+  world_file_name = 'new-env2'
   world_path = os.path.join(pkg_share, 'src/worlds/', world_file_name)
    
   # Set the path to the SDF model files.
@@ -28,6 +28,7 @@ def generate_launch_description():
   use_sim_time = LaunchConfiguration('use_sim_time')
   use_simulator = LaunchConfiguration('use_simulator')
   world = LaunchConfiguration('world')
+  enable_audio = LaunchConfiguration('enable_audio')
  
   declare_simulator_cmd = DeclareLaunchArgument(
     name='headless',
@@ -48,6 +49,11 @@ def generate_launch_description():
     name='world',
     default_value=world_path,
     description='Full path to the world model file to load')
+  
+  declare_enable_audio_cmd = DeclareLaunchArgument(  # Add this block
+    name='enable_audio',
+    default_value='false',
+    description='Enable audio support in Gazebo')
     
   # Specify the actions
    
@@ -55,7 +61,7 @@ def generate_launch_description():
   start_gazebo_server_cmd = IncludeLaunchDescription(
     PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')),
     condition=IfCondition(use_simulator),
-    launch_arguments={'world': world}.items())
+    launch_arguments={'world': world, 'enable_audio': enable_audio}.items())
   
   # Start Gazebo client    
   start_gazebo_client_cmd = IncludeLaunchDescription(
@@ -70,6 +76,7 @@ def generate_launch_description():
   ld.add_action(declare_use_sim_time_cmd)
   ld.add_action(declare_use_simulator_cmd)
   ld.add_action(declare_world_cmd)
+  ld.add_action(declare_enable_audio_cmd)
  
   # Add any actions
   ld.add_action(start_gazebo_server_cmd)
