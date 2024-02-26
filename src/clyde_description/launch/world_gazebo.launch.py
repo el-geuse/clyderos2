@@ -15,7 +15,7 @@ def generate_launch_description():
   pkg_share = FindPackageShare(package='clyde_description').find('clyde_description')
  
   # Set the path to the world file
-  world_file_name = 'new-env0'
+  world_file_name = 'world-env0'
   world_path = os.path.join(pkg_share, 'src/worlds/', world_file_name)
    
   # Set the path to the SDF model files.

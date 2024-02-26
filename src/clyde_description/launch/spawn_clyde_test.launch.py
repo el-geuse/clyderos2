@@ -16,8 +16,9 @@ def generate_launch_description():
   robot_name_in_model = 'clyde'
   urdf_model_path = 'src/urdf/clyde_simple.urdf'
   world_file_path = 'src/worlds/new-env0'
+  rviz_config_path = 'rviz/urdf_config.rviz'
      
-  # Pose where we want to spawn the robot
+  # Pose where we want to spawn the rob`ot
   spawn_x_val = '0.0'
   spawn_y_val = '0.0'
   spawn_z_val = '0.0'
@@ -32,6 +33,8 @@ def generate_launch_description():
   gazebo_models_path = os.path.join(pkg_share, gazebo_models_path)
   os.environ["GAZEBO_MODEL_PATH"] = gazebo_models_path
   urdf_model_path = os.path.join(pkg_share, urdf_model_path)
+  rviz_config_path = os.path.join(pkg_share, rviz_config_path)
+
    
   # Launch configuration variables specific to simulation
   gui = LaunchConfiguration('gui')
@@ -47,37 +50,82 @@ def generate_launch_description():
   declare_namespace_cmd = DeclareLaunchArgument(
     name='namespace',
     default_value='',
-    description='Top-level namespace')
+    description='Top-level namespace'
+  )
  
   declare_use_namespace_cmd = DeclareLaunchArgument(
     name='use_namespace',
     default_value='false',
-    description='Whether to apply a namespace to the navigation stack')
+    description='Whether to apply a namespace to the navigation stack'
+  )
              
   declare_sdf_model_path_cmd = DeclareLaunchArgument(
     name='urdf_model', 
     default_value=urdf_model_path, 
-    description='Absolute path to robot sdf file')
+    description='Absolute path to robot sdf file'
+  )
  
   declare_simulator_cmd = DeclareLaunchArgument(
     name='headless',
     default_value='False',
-    description='Whether to execute gzclient')
+    description='Whether to execute gzclient'
+  )
      
   declare_use_sim_time_cmd = DeclareLaunchArgument(
     name='use_sim_time',
     default_value='true',
-    description='Use simulation (Gazebo) clock if true')
+    description='Use simulation (Gazebo) clock if true'
+  )
  
   declare_use_simulator_cmd = DeclareLaunchArgument(
     name='use_simulator',
     default_value='True',
-    description='Whether to start the simulator')
+    description='Whether to start the simulator'
+  )
  
   declare_world_cmd = DeclareLaunchArgument(
     name='world',
     default_value=world_path,
-    description='Full path to the world model file to load')
+    description='Full path to the world model file to load'
+  )
+  
+  declare_jsp_gui_cmd = DeclareLaunchArgument(
+    name='gui', 
+    default_value='True',
+    description='Flag to enable joint_state_publisher_gui'
+  )
+
+  declare_rviz_config_cmd = DeclareLaunchArgument(
+    name='rvizconfig', 
+    default_value=rviz_config_path, 
+    description='Absolute path to rviz config file'
+  )
+  
+  robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        parameters=[{'robot_description': Command(['xacro ', LaunchConfiguration('urdf_model')])}]
+    )
+  joint_state_publisher_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher',
+        arguments=[urdf_model_path],
+        condition=UnlessCondition(LaunchConfiguration('gui'))
+    )
+  joint_state_publisher_gui_node = Node(
+        package='joint_state_publisher_gui',
+        executable='joint_state_publisher_gui',
+        name='joint_state_publisher_gui',
+        condition=IfCondition(LaunchConfiguration('gui'))
+    )
+  rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', LaunchConfiguration('rvizconfig')],
+    )
    
   # Start Gazebo server
   start_gazebo_server_cmd = IncludeLaunchDescription(
@@ -113,8 +161,14 @@ def generate_launch_description():
   ld.add_action(declare_use_sim_time_cmd)
   ld.add_action(declare_use_simulator_cmd)
   ld.add_action(declare_world_cmd)
+  ld.add_action(declare_rviz_config_cmd)
+  ld.add_action(declare_jsp_gui_cmd)
  
   # Add any actions
+  ld.add_action(joint_state_publisher_node)
+  ld.add_action(joint_state_publisher_gui_node)
+  ld.add_action(robot_state_publisher_node)
+  ld.add_action(rviz_node)
   ld.add_action(start_gazebo_server_cmd)
   ld.add_action(start_gazebo_client_cmd)
   ld.add_action(spawn_entity_cmd)
