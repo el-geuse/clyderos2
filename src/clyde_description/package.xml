@@ -4,7 +4,7 @@
   <name>clyde_description</name>
   <version>0.0.0</version>
   <description>Files needed for representation of Clyde's model</description>
-  <maintainer email="peter.lacaze.2019@uni.strath.ac.uk">GroupC</maintainer>
+  <maintainer email="peter.lacaze.2019@uni.strath.ac.uk"> Peter Lacaze </maintainer>
   <maintainer email="josef.manlutac.2019@uni.strath.ac.uk"> Josef Manlutac </maintainer>
   <license>Apache-2.0</license>
 

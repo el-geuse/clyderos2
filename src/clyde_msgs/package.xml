@@ -4,7 +4,7 @@
   <name>clyde_msgs</name>
   <version>0.0.0</version>
   <description>Package detailing all messages defined within the system</description>
-  <maintainer email="peter.lacaze.2019@uni.strath.ac.uk">GroupC</maintainer>
+  <maintainer email="peter.lacaze.2019@uni.strath.ac.uk"> Peter Lacaze </maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
