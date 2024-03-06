@@ -10,6 +10,7 @@ RUN apt-get update \
    && apt-get autoremove -y \
    && apt-get clean -y \
    && rm -rf /var/lib/apt/lists/*
+COPY ${WORKSPACE}/ament_flake8.ini /opt/ros/humble/lib/python3.10/site-packages/ament_flake8/configuration/ament_flake8.ini
 ENV DEBIAN_FRONTEND=dialog
 
 # Set up auto-source of workspace for ros user
