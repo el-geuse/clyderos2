@@ -4,3 +4,4 @@ log/*
 site/*
 
 __pycache__/
+.env
