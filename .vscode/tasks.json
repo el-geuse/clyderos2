@@ -139,6 +139,7 @@
             "type": "ament",
             "task": "flake8",
             "path": "src/",
+            "commandOptions": "--config .vscode/.flake8",
             "problemMatcher": "$ament_flake8",
             "presentation": {
                 "panel": "dedicated",
