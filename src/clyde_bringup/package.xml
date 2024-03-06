@@ -4,7 +4,7 @@
   <name>clyde_bringup</name>
   <version>0.0.0</version>
   <description>Contains launch files used in all the other packages</description>
-  <maintainer email="peter.lacaze.2019@uni.strath.ac.uk">GroupC</maintainer>
+  <maintainer email="peter.lacaze.2019@uni.strath.ac.uk"> Peter Lacaze </maintainer>
   <license>Apache-2.0</license>
 
   <test_depend>ament_copyright</test_depend>
