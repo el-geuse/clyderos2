@@ -4,7 +4,7 @@
   <name>clyde_navigation</name>
   <version>0.0.0</version>
   <description>Code used for autonomous navigation</description>
-  <maintainer email="peter.lacaze.2019@uni.strath.ac.uk">GroupC</maintainer>
+  <maintainer email="peter.lacaze.2019@uni.strath.ac.uk"> Peter Lacaze </maintainer>
   <maintainer email="josef.manlutac.2019@uni.strath.ac.uk">jsble</maintainer>
   <license>Apache-2.0</license>
 

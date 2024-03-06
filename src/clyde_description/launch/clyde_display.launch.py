@@ -3,8 +3,8 @@ from launch.substitutions import Command, LaunchConfiguration
 import launch_ros
 import os
 
-# displays Clyde inside RViz
 
+# displays Clyde inside RViz
 def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(package='clyde_description')\
         .find('clyde_description')
@@ -51,4 +51,3 @@ def generate_launch_description():
         robot_state_publisher_node,
         rviz_node
     ])
-    
