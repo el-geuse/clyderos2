@@ -7,7 +7,4 @@
   <material name="silver">
     <color rgba="0.700 0.700 0.700 1.000"/>
   </material>
-  <material name="red">
-    <color rgba="1.000 0.000 0.000 1.000"/>
-  </material>
 </robot>

@@ -139,7 +139,6 @@
             "type": "ament",
             "task": "flake8",
             "path": "src/",
-            // "commandOptions": "--config .flake8",
             "problemMatcher": "$ament_flake8",
             "presentation": {
                 "panel": "dedicated",
