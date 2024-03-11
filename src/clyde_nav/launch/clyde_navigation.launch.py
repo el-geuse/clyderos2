@@ -86,7 +86,7 @@ def generate_launch_description():
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
-        default_value=os.path.join(map_dir, 'map.yaml'),
+        default_value=os.path.join(map_dir, 'test-realm1.yaml'),
         description='Full path to map file to load',
     )
 

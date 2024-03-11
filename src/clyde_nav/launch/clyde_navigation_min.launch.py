@@ -32,7 +32,7 @@ def generate_launch_description():
     )
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
-        'map', default_value=os.path.join(nav_dir, 'maps', 'map.yaml'), description='Full path to map file to load'
+        'map', default_value=os.path.join(nav_dir, 'maps', 'test-realm1.yaml'), description='Full path to map file to load'
     )
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
