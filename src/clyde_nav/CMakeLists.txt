@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.8)
-project(clyde_navigation)
+project(clyde_nav)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -13,6 +15,12 @@ find_package(ament_cmake REQUIRED)
 find_package(nav2_common REQUIRED)
 find_package(navigation2 REQUIRED)
 find_package(nav2_bringup REQUIRED)
+find_package(clyde_description REQUIRED)
+
+install(
+  DIRECTORY launch params
+  DESTINATION share/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

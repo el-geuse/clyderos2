@@ -10,6 +10,7 @@ def generate_launch_description():
         .find('clyde_description')
     default_model_path = os.path.join(pkg_share, 'src/urdf/clyde_simple.urdf')
     default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config.rviz')
+    default_map_path = os.path.join(pkg_share, 'src/maps/map.yaml')
 
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
@@ -37,8 +38,16 @@ def generate_launch_description():
         arguments=['-d', LaunchConfiguration('rvizconfig')],
     )
 
+    map_server_node = launch_ros.actions.Node(
+        package='nav2_map_server',
+        executable='map_server',
+        name='map_server',
+        parameters=[{'yaml_filename': LaunchConfiguration('map')}],
+        output='screen',
+    )
+
     return launch.LaunchDescription([
-        launch.actions.DeclareLaunchArgument(name='gui', default_value='True',
+        launch.actions.DeclareLaunchArgument(name='gui', default_value='False',
                                              description='Flag to enable \
                                              joint_state_publisher_gui'),
         launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
@@ -46,8 +55,14 @@ def generate_launch_description():
         launch.actions.DeclareLaunchArgument(name='rvizconfig',
                                              default_value=default_rviz_config_path,
                                              description='Absolute path to rviz config file'),
+        launch.actions.DeclareLaunchArgument(
+            name='map',
+            default_value=default_map_path,
+            description='Absolute path to map yaml file'
+        ),
         joint_state_publisher_node,
         joint_state_publisher_gui_node,
         robot_state_publisher_node,
-        rviz_node
+        rviz_node,
+        map_server_node
     ])

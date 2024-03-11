@@ -4,4 +4,4 @@ origin: [-1.500000, -1.500000, 0.0]
 resolution: 0.010000
 mode: trinary
 occupied_thresh: 0.95
-image: /home/nssp/Documents/dev/generate_maps/map.pgm
+image: /workspaces/clyderos2/install/share/clyde_description/src/maps/map.pgm

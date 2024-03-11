@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>clyde_navigation</name>
+  <name>clyde_nav</name>
   <version>0.0.0</version>
   <description>Code used for autonomous navigation</description>
   <maintainer email="peter.lacaze.2019@uni.strath.ac.uk"> Peter Lacaze </maintainer>
@@ -17,6 +17,7 @@
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>nav2_common</exec_depend>
   <exec_depend>slam_toolbox</exec_depend>
+  <exec_depend>clyde_description</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
