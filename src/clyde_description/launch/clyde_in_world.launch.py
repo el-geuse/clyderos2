@@ -15,7 +15,7 @@ def generate_launch_description():
     pkg_share = FindPackageShare(package='clyde_description').find('clyde_description')
 
     # Set the path to the world file
-    world_file_name = 'new-env2'
+    world_file_name = 'test-realm1'
     world_path = os.path.join(pkg_share, 'src/worlds/', world_file_name)
 
     # Set the path to the URDF file
@@ -40,7 +40,7 @@ def generate_launch_description():
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
         name='use_sim_time',
-        default_value='true',
+        default_value='True',
         description='Use simulation (Gazebo) clock if true')
 
     declare_use_simulator_cmd = DeclareLaunchArgument(
@@ -55,7 +55,7 @@ def generate_launch_description():
 
     declare_enable_audio_cmd = DeclareLaunchArgument(
         name='enable_audio',
-        default_value='false',
+        default_value='False',
         description='Enable audio support in Gazebo')
 
     # Start Gazebo server
