@@ -4,4 +4,4 @@ origin: [-1.500000, -1.500000, 0.0]
 resolution: 0.010000
 mode: trinary
 occupied_thresh: 0.65
-image: test-realm1.png
+image: test-realm1.pgm

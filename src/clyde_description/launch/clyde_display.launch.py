@@ -10,7 +10,7 @@ def generate_launch_description():
         .find('clyde_description')
     default_model_path = os.path.join(pkg_share, 'src/urdf/clyde_simple.urdf')
     default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config.rviz')
-    default_map_path = os.path.join(pkg_share, 'src/maps/map.yaml')
+    default_map_path = os.path.join(pkg_share, 'src/maps/test-realm1.yaml')
 
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',

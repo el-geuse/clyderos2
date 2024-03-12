@@ -441,17 +441,10 @@ Visualization Manager:
                     {}
       Update Interval: 0
       Value: true
-    - Class: rviz_default_plugins/Map
-      Topic: /map
-      Alpha: 0.7
-      Color Scheme: map
-      Draw Behind: true
-      Enabled: true
-      Name: Map
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: map
+    Fixed Frame: base_link
     Frame Rate: 60
   Name: root
   Tools:

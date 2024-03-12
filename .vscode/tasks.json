@@ -238,10 +238,10 @@
             "problemMatcher": []
         },
         {
-            "label": "source package",
-            "detail": "Sources the current package",
+            "label": "Build and source package",
+            "detail": "Builds and sources the current package",
             "type": "shell",
-            "command": "source ./install/setup.bash",
+            "command": "./build.sh && source ./install/setup.bash",
             "problemMatcher": []
         }
     ],
