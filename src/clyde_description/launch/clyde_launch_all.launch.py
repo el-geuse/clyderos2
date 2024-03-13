@@ -7,6 +7,7 @@ from launch.substitutions import LaunchConfiguration, PythonExpression, Command
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
+# CURRENT DOESNT WORK
 
 def generate_launch_description():
     # Set the path to the Gazebo ROS package
@@ -23,7 +24,7 @@ def generate_launch_description():
     map_path = os.path.join(pkg_share, 'src/maps/test-realm1.yaml')
 
     # Set the path to the URDF file
-    urdf_file_name = 'clyde_simple.urdf'
+    urdf_file_name = 'clyde.urdf'
     urdf_path = os.path.join(pkg_share, 'src/urdf/', urdf_file_name)
 
     # Set the path to the RViz configuration file

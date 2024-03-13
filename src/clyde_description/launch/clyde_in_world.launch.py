@@ -6,6 +6,8 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, Command, FindExecutable, PathJoinSubstitution, PythonExpression
 from launch_ros.substitutions import FindPackageShare
 
+# WORKS WELL - Spawns Clyde in Gazebo
+
 def generate_launch_description():
     # Find the 'gazebo_ros' package
     pkg_gazebo_ros = FindPackageShare(package='gazebo_ros').find('gazebo_ros')

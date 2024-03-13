@@ -1,68 +1,65 @@
-import launch
+from launch import LaunchDescription
 from launch.substitutions import Command, LaunchConfiguration
-import launch_ros
+from launch.actions import DeclareLaunchArgument
+from launch.conditions import IfCondition, UnlessCondition
+from launch_ros.substitutions import FindPackageShare
+from launch_ros.actions import Node
 import os
 
+# WORKS - Displays Clyde in rviz
 
 # displays Clyde inside RViz
 def generate_launch_description():
-    pkg_share = launch_ros.substitutions.FindPackageShare(package='clyde_description')\
+    pkg_share = FindPackageShare(package='clyde_description')\
         .find('clyde_description')
-    default_model_path = os.path.join(pkg_share, 'src/urdf/clyde_simple.urdf')
-    default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config.rviz')
-    default_map_path = os.path.join(pkg_share, 'src/maps/test-realm1.yaml')
+    urdf_path = os.path.join(pkg_share, 'src/urdf/clyde.urdf')
+    rviz_config_path = os.path.join(pkg_share, 'rviz/clyde_config.rviz')
 
-    robot_state_publisher_node = launch_ros.actions.Node(
+    declare_gui_cmd = DeclareLaunchArgument(
+        name='gui',
+        default_value='False',
+        description='Flag to enable joint_state_publisher_gui')
+    
+    declare_model_cmd = DeclareLaunchArgument(
+        name='model',
+        default_value=urdf_path,
+        description='Absolute path to robot urdf file')
+
+    robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         parameters=[{'robot_description': Command(['xacro ', LaunchConfiguration('model')])}]
     )
-    joint_state_publisher_node = launch_ros.actions.Node(
+    joint_state_publisher_node = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
         name='joint_state_publisher',
-        arguments=[default_model_path],
-        condition=launch.conditions.UnlessCondition(LaunchConfiguration('gui'))
+        arguments=[urdf_path],
+        condition=UnlessCondition(LaunchConfiguration('gui'))
     )
-    joint_state_publisher_gui_node = launch_ros.actions.Node(
+    joint_state_publisher_gui_node = Node(
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
         name='joint_state_publisher_gui',
-        condition=launch.conditions.IfCondition(LaunchConfiguration('gui'))
+        condition=IfCondition(LaunchConfiguration('gui'))
     )
-    rviz_node = launch_ros.actions.Node(
+
+    rviz_node = Node(
         package='rviz2',
         executable='rviz2',
         name='rviz2',
         output='screen',
-        arguments=['-d', LaunchConfiguration('rvizconfig')],
+        arguments=['-d', rviz_config_path],
     )
 
-    map_server_node = launch_ros.actions.Node(
-        package='nav2_map_server',
-        executable='map_server',
-        name='map_server',
-        parameters=[{'yaml_filename': LaunchConfiguration('map')}],
-        output='screen',
-    )
+    ld = LaunchDescription()
 
-    return launch.LaunchDescription([
-        launch.actions.DeclareLaunchArgument(name='gui', default_value='False',
-                                             description='Flag to enable \
-                                             joint_state_publisher_gui'),
-        launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
-                                             description='Absolute path to robot urdf file'),
-        launch.actions.DeclareLaunchArgument(name='rvizconfig',
-                                             default_value=default_rviz_config_path,
-                                             description='Absolute path to rviz config file'),
-        launch.actions.DeclareLaunchArgument(
-            name='map',
-            default_value=default_map_path,
-            description='Absolute path to map yaml file'
-        ),
-        joint_state_publisher_node,
-        joint_state_publisher_gui_node,
-        robot_state_publisher_node,
-        rviz_node,
-        map_server_node
-    ])
+    ld.add_action(declare_gui_cmd)
+    ld.add_action(declare_model_cmd)
+
+    ld.add_action(joint_state_publisher_node)
+    ld.add_action(joint_state_publisher_gui_node)
+    ld.add_action(robot_state_publisher_node)
+    ld.add_action(rviz_node)
+
+    return ld
