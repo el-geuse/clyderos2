@@ -2,8 +2,8 @@
 <robot name="clyde" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <xacro:include filename="$(find clyde_description)/src/urdf/materials.xacro" />
-<xacro:include filename="$(find clyde_description)/src/urdf/clyde_simple.trans" />
-<xacro:include filename="$(find clyde_description)/src/urdf/clyde_simple.gazebo" />
+<xacro:include filename="$(find clyde_description)/src/urdf/clyde.trans" />
+<xacro:include filename="$(find clyde_description)/src/urdf/clyde.gazebo" />
 
 <xacro:macro name="box_inertia" params="m w h d">
   <inertial>

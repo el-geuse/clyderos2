@@ -26,6 +26,13 @@ Visualization Manager:
       Enabled: true
       Name: Camera
       Topic: /camera/image_raw
+    - Class: rviz_default_plugins/Map
+      Enabled: true
+      Name: Map
+      Topic: /map
+      Color Scheme: map
+      Alpha: 0.7
+      Draw Behind: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
