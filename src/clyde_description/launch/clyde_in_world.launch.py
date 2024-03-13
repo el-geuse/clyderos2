@@ -1,62 +1,65 @@
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, ExecuteProcess
-from launch.conditions import IfCondition
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, ExecuteProcess, SetEnvironmentVariable
+from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.substitutions import LaunchConfiguration, Command, FindExecutable, PathJoinSubstitution, PythonExpression
 from launch_ros.substitutions import FindPackageShare
 
-
 def generate_launch_description():
-    # Set the path to the Gazebo ROS package
+    # Find the 'gazebo_ros' package
     pkg_gazebo_ros = FindPackageShare(package='gazebo_ros').find('gazebo_ros')
 
-    # Set the path to this package.
+    # Find this package (e.g., 'clyde_description')
     pkg_share = FindPackageShare(package='clyde_description').find('clyde_description')
+
+    # Adjusted path to the SDF file
+    sdf_file_path = os.path.join(pkg_share, 'src/models/clyde_model/model.sdf')
+
+    # Set the GAZEBO_MODEL_PATH to include the path to your models directory
+    gazebo_models_path = os.path.join(pkg_share, 'src/models')
 
     # Set the path to the world file
     world_file_name = 'test-realm1'
     world_path = os.path.join(pkg_share, 'src/worlds/', world_file_name)
-
-    # Set the path to the URDF file
-    urdf_file_name = 'clyde_simple.urdf'
-    urdf_path = os.path.join(pkg_share, 'src/urdf/', urdf_file_name)
-
-    # Set the path to the SDF model files.
-    gazebo_models_path = os.path.join(pkg_share, 'src/models')
-    os.environ["GAZEBO_MODEL_PATH"] = gazebo_models_path
-
-    # Launch configuration variables specific to simulation
+    
+    # Launch configuration variables
     headless = LaunchConfiguration('headless')
     use_simulator = LaunchConfiguration('use_simulator')
     world = LaunchConfiguration('world')
     enable_audio = LaunchConfiguration('enable_audio')
 
     # Declare the launch arguments
-    declare_simulator_cmd = DeclareLaunchArgument(
+    declare_headless_arg = DeclareLaunchArgument(
         name='headless',
         default_value='False',
         description='Whether to execute gzclient')
 
-    declare_use_sim_time_cmd = DeclareLaunchArgument(
+    declare_use_sim_time_arg = DeclareLaunchArgument(
         name='use_sim_time',
         default_value='True',
         description='Use simulation (Gazebo) clock if true')
 
-    declare_use_simulator_cmd = DeclareLaunchArgument(
+    declare_use_simulator_arg = DeclareLaunchArgument(
         name='use_simulator',
         default_value='True',
         description='Whether to start the simulator')
 
-    declare_world_cmd = DeclareLaunchArgument(
+    declare_world_arg = DeclareLaunchArgument(
         name='world',
         default_value=world_path,
-        description='Full path to the world model file to load')
+        description='Full path to the world file to load')
 
-    declare_enable_audio_cmd = DeclareLaunchArgument(
+    declare_enable_audio_arg = DeclareLaunchArgument(
         name='enable_audio',
         default_value='False',
         description='Enable audio support in Gazebo')
+
+    # Set the GAZEBO_MODEL_PATH environment variable for all child processes
+    set_gazebo_model_path = SetEnvironmentVariable(
+        name='GAZEBO_MODEL_PATH',
+        value=gazebo_models_path
+    )
 
     # Start Gazebo server
     start_gazebo_server_cmd = IncludeLaunchDescription(
@@ -69,11 +72,11 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')),
         condition=IfCondition(PythonExpression([use_simulator, ' and not ', headless])))
 
-    # Spawn entity
+    # Spawn entity from SDF file
     spawn_entity_cmd = ExecuteProcess(
         cmd=['ros2', 'run', 'gazebo_ros', 'spawn_entity.py',
              '-entity', 'clyde',
-             '-topic', '/robot_description'],
+             '-file', sdf_file_path],
         output='screen'
     )
 
@@ -81,15 +84,18 @@ def generate_launch_description():
     ld = LaunchDescription()
 
     # Declare the launch options
-    ld.add_action(declare_simulator_cmd)
-    ld.add_action(declare_use_sim_time_cmd)
-    ld.add_action(declare_use_simulator_cmd)
-    ld.add_action(declare_world_cmd)
-    ld.add_action(declare_enable_audio_cmd)
+    ld.add_action(declare_headless_arg)
+    ld.add_action(declare_use_sim_time_arg)
+    ld.add_action(declare_use_simulator_arg)
+    ld.add_action(declare_world_arg)
+    ld.add_action(declare_enable_audio_arg)
+    ld.add_action(set_gazebo_model_path)
 
-    # Add any actions
+    # Add Gazebo server and client startup actions
     ld.add_action(start_gazebo_server_cmd)
     ld.add_action(start_gazebo_client_cmd)
+
+    # Add the action to spawn the entity
     ld.add_action(spawn_entity_cmd)
 
     return ld
