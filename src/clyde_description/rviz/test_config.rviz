@@ -54,3 +54,52 @@ Window Geometry:
   Width: 800
   X: 50
   Y: 50
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /TF1
+      Splitter Ratio: 0.5
+    Tree Height: 100
+Visualization Manager:
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Enabled: true
+      Name: Grid
+      Reference Frame: <Fixed Frame>
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Show Arrows: false
+      Show Axes: false
+      Show Names: false
+      Name: TF
+    - Class: rviz_default_plugins/RobotModel
+      Enabled: true
+      Description Source: Topic
+      Description Topic: /robot_description
+      Name: RobotModel
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Name: Camera
+      Topic: /camera/image_raw
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+Window Geometry:
+  Height: 600
+  Width: 800
+  X: 50
+  Y: 50
