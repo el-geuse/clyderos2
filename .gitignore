@@ -5,4 +5,3 @@ site/*
 
 __pycache__/
 .env
-
