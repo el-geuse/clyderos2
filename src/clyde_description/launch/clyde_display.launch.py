@@ -13,7 +13,7 @@ def generate_launch_description():
     pkg_share = FindPackageShare(package='clyde_description')\
         .find('clyde_description')
     urdf_path = os.path.join(pkg_share, 'src/urdf/clyde.urdf')
-    rviz_config_path = os.path.join(pkg_share, 'rviz/test_config.rviz')
+    rviz_config_path = os.path.join(pkg_share, 'rviz/clyde_config.rviz')
 
     declare_gui_cmd = DeclareLaunchArgument(
         name='gui',
