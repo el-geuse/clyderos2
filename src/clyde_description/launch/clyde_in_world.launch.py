@@ -17,6 +17,7 @@ def generate_launch_description():
 
     # Adjusted path to the SDF file
     sdf_file_path = os.path.join(pkg_share, 'src/models/clyde_model/model.sdf')
+    urdf_file_path = os.path.join(pkg_share, 'src/urdf/clyde.urdf')
 
     # Set the GAZEBO_MODEL_PATH to include the path to your models directory
     gazebo_models_path = os.path.join(pkg_share, 'src/models')
@@ -78,7 +79,7 @@ def generate_launch_description():
     spawn_entity_cmd = ExecuteProcess(
         cmd=['ros2', 'run', 'gazebo_ros', 'spawn_entity.py',
              '-entity', 'clyde',
-             '-file', sdf_file_path],
+             '-file', urdf_file_path],
         output='screen'
     )
 

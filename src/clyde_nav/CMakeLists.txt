@@ -18,7 +18,7 @@ find_package(nav2_bringup REQUIRED)
 find_package(clyde_description REQUIRED)
 
 install(
-  DIRECTORY launch params
+  DIRECTORY launch config
   DESTINATION share/${PROJECT_NAME}
 )
 

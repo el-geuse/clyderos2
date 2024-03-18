@@ -428,7 +428,7 @@
       </sensor>
     </link>
     <joint name='shrfs_joint' type='revolute'>
-      <pose relative_to='base_footprint'>0.0525 -0.0485 0.022 0 -0 0</pose>
+      <pose relative_to='base_footprint'>0.0525 -0.0485 0.022 0 -0.804 0</pose>
       <parent>base_footprint</parent>
       <child>c_thrf__1</child>
       <axis>
@@ -620,7 +620,7 @@
       <self_collide>1</self_collide>
     </link>
     <joint name='shrft_joint' type='revolute'>
-      <pose relative_to='c_thrf__1'>-0.044433 0.00142 -0.011906 0 -0 0</pose>
+      <pose relative_to='c_thrf__1'>-0.044433 0.00142 -0.011906 -3.14159 1.287 -3.14159</pose>
       <parent>c_thrf__1</parent>
       <child>servos_rf_1</child>
       <axis>
@@ -716,7 +716,7 @@
       <self_collide>1</self_collide>
     </link>
     <joint name='shlfs_joint' type='revolute'>
-      <pose relative_to='base_footprint'>0.0525 0.0485 0.022 0 -0 0</pose>
+      <pose relative_to='base_footprint'>0.0525 0.0485 0.022 0 -0.804 0</pose>
       <parent>base_footprint</parent>
       <child>c_thlf_1</child>
       <axis>
@@ -908,7 +908,7 @@
       <self_collide>1</self_collide>
     </link>
     <joint name='shlft_joint' type='revolute'>
-      <pose relative_to='c_thlf_1'>-0.044433 -0.00142 -0.011906 0 -0 0</pose>
+      <pose relative_to='c_thlf_1'>-0.044433 -0.00142 -0.011906 -3.14159 1.287 -3.14159</pose>
       <parent>c_thlf_1</parent>
       <child>servos_lf_1</child>
       <axis>
@@ -1004,7 +1004,7 @@
       <self_collide>1</self_collide>
     </link>
     <joint name='shrrs_joint' type='revolute'>
-      <pose relative_to='base_footprint'>-0.0525 -0.0485 0.022 0 -0 0</pose>
+      <pose relative_to='base_footprint'>-0.0525 -0.0485 0.022 0 -0.804 0</pose>
       <parent>base_footprint</parent>
       <child>c_thrr_1</child>
       <axis>
@@ -1196,7 +1196,7 @@
       <self_collide>1</self_collide>
     </link>
     <joint name='shrrt_joint' type='revolute'>
-      <pose relative_to='c_thrr_1'>-0.044433 0.00142 -0.011906 0 -0 0</pose>
+      <pose relative_to='c_thrr_1'>-0.044433 0.00142 -0.011906 -3.14159 1.287 -3.14159</pose>
       <parent>c_thrr_1</parent>
       <child>servos_rr_1</child>
       <axis>
@@ -1292,7 +1292,7 @@
       <self_collide>1</self_collide>
     </link>
     <joint name='shlrs_joint' type='revolute'>
-      <pose relative_to='base_footprint'>-0.0525 0.0485 0.022 0 -0 0</pose>
+      <pose relative_to='base_footprint'>-0.0525 0.0485 0.022 0 -0.804 0</pose>
       <parent>base_footprint</parent>
       <child>c_thlr_1</child>
       <axis>
@@ -1484,7 +1484,7 @@
       <self_collide>1</self_collide>
     </link>
     <joint name='shlrt_joint' type='revolute'>
-      <pose relative_to='c_thlr_1'>-0.044433 -0.001418 -0.011906 0 -0 0</pose>
+      <pose relative_to='c_thlr_1'>-0.044433 -0.001418 -0.011906 -3.14159 1.287 -3.14159</pose>
       <parent>c_thlr_1</parent>
       <child>servos_lr_1</child>
       <axis>
