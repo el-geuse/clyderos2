@@ -1581,18 +1581,18 @@
   <link name="imu_link">
     <visual>
       <geometry>
-        <box size="0.01 0.01 0.01"/>
+        <box size="0.02 0.02 0.004"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <box size="0.01 0.01 0.01"/>
+        <box size="0.02 0.02 0.004"/>
       </geometry>
     </collision>
     <inertial>
       <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0 0 0"/>
-      <mass value="0.1"/>
-      <inertia ixx="1.6666666666666667e-06" ixy="0.0" ixz="0.0" iyy="1.6666666666666667e-06" iyz="0.0" izz="1.6666666666666667e-06"/>
+      <mass value="0.005"/>
+      <inertia ixx="1.7333333333333335e-07" ixy="0.0" ixz="0.0" iyy="1.7333333333333335e-07" iyz="0.0" izz="3.3333333333333335e-07"/>
     </inertial>
   </link>
   <joint name="base_joint" type="fixed">
@@ -1672,7 +1672,7 @@
     <child link="servo_lrs__1"/>
   </joint>
   <joint name="shrfs_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="-0.007145 -0.0125 0.004125"/>
+    <origin rpy="0 -1.375 0" xyz="-0.007145 -0.0125 0.004125"/>
     <parent link="servo_rfs_1"/>
     <child link="c_thrf__1"/>
     <axis xyz="0.0 1.0 -0.0"/>
@@ -1683,7 +1683,7 @@
     <child link="shank_rf_1"/>
   </joint>
   <joint name="shrft_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0.0 0.007857 0.0"/>
+    <origin rpy="0 1.240 0" xyz="0.0 0.007857 0.0"/>
     <parent link="c_thorf_1"/>
     <child link="servos_rf_1"/>
     <axis xyz="0.0 1.0 -0.0"/>
@@ -1714,13 +1714,13 @@
     <child link="shank_rr_1"/>
   </joint>
   <joint name="shrrs_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0.007145 -0.0125 0.004125"/>
+    <origin rpy="0 -1.375 0" xyz="0.007145 -0.0125 0.004125"/>
     <parent link="servo_rrs__1"/>
     <child link="c_thrr_1"/>
     <axis xyz="0.0 -1.0 -0.0"/>
   </joint>
   <joint name="shrrt_joint" type="continuous">
-    <origin rpy="3.1416 1.287 3.1416" xyz="0.0 0.007857 0.0"/>
+    <origin rpy="0 1.240 0" xyz="0.0 0.007857 0.0"/>
     <parent link="c_thorr_1"/>
     <child link="servos_rr_1"/>
     <axis xyz="0.0 1.0 -0.0"/>
@@ -1751,13 +1751,13 @@
     <child link="shank_lf_1"/>
   </joint>
   <joint name="shlfs_joint" type="continuous">
-    <origin rpy="0 -0.804 0" xyz="-0.007145 0.0125 0.004125"/>
+    <origin rpy="0 -1.375 0" xyz="-0.007145 0.0125 0.004125"/>
     <parent link="servo_lfs_1"/>
     <child link="c_thlf_1"/>
     <axis xyz="-0.0 1.0 0.0"/>
   </joint>
   <joint name="shlft_joint" type="continuous">
-    <origin rpy="3.1416 1.287 3.1416" xyz="0.0 -0.007857 0.0"/>
+    <origin rpy="0 1.240 0" xyz="0.0 -0.007857 0.0"/>
     <parent link="c_tholf_1"/>
     <child link="servos_lf_1"/>
     <axis xyz="-0.0 1.0 0.0"/>
@@ -1788,13 +1788,13 @@
     <child link="shank_lr_1"/>
   </joint>
   <joint name="shlrs_joint" type="continuous">
-    <origin rpy="0 -0.804 0" xyz="0.007145 0.0125 0.004125"/>
+    <origin rpy="0 -1.375 0" xyz="0.007145 0.0125 0.004125"/>
     <parent link="servo_lrs__1"/>
     <child link="c_thlr_1"/>
     <axis xyz="-0.0 -1.0 0.0"/>
   </joint>
   <joint name="shlrt_joint" type="continuous">
-    <origin rpy="3.1416 1.287 3.1416" xyz="0.0 -0.007857 0.0"/>
+    <origin rpy="0 1.240 0" xyz="0.0 -0.007857 0.0"/>
     <parent link="c_tholr__1"/>
     <child link="servos_lr_1"/>
     <axis xyz="0.0 1.0 -0.0"/>
