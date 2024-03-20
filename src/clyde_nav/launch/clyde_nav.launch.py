@@ -7,9 +7,11 @@ from launch.conditions import IfCondition
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
+# DOESN'T WORK RIGHT NOW
+
 def generate_launch_description():
     # Find directories and files
-    pkg_share = FindPackageShare(package='clyde_description').find('clyde_description')
+    pkg_share = FindPackageShare(package='clyde_nav').find('clyde_nav')
     pkg_nav = FindPackageShare(package='nav2_bringup').find('nav2_bringup')
     launch_dir = os.path.join(pkg_nav, 'launch')
 
