@@ -132,8 +132,10 @@ class Audio:
 
 if __name__ == '__main__':
 
-    access_key = "g+q+eTqgdjjQSergVPydl3gUWzMdoWFzOIOZN+fGRbikH4CsAsvuOg=="
-    keyword_paths = ["Hello-Clyde_en_windows_v3_0_0.ppn"]
+    access_key = "C2xFc9n2QGICQXRJuWvfCZUMZW+uru9hd18xtfD1PWCAXc5LbqfTdQ=="
+    keyword_paths = ["/home/elgeuse/Documents/uni_stuff/5Individual_Project/clyderos2/src/clyde_audio/resource/Hello-Clyde_en_linux_v3_0_0.ppn"]
+    # keyword_paths = ["/workspaces/clyderos2/src/clyde_audio/resource/Hello-Clyde_en_linux_v3_0_0.ppn"]
+
 
     audio = Audio(access_key=access_key, keyword_paths=keyword_paths)
     audio.wakeword()
