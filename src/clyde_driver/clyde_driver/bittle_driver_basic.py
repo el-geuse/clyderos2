@@ -4,6 +4,7 @@ from rclpy.node import Node
 import serial
 import struct
 from geometry_msgs.msg import Twist
+from sensor_msgs.msg import JointState
 
 dir_dict = {1: 'kwk',          # walk forward
             -1: 'kbk',          # walk backwards
@@ -18,6 +19,10 @@ class Driver(Node):
         super().__init__('cmd_vel_listener')
         self.subscription = self.create_subscription(Twist, "/cmd_vel", self.callback, 10)
         self.subscription  # prevent unused variable warning
+
+        self.joint_state_publisher = self.create_publisher(JointState, '/joint_states', 10)
+        self.joint_state_publisher # prevent unused variable warning
+        self.time = self.create_timer(0.1, self.publish_joint_angles)   # 10Hz
 
         self.dir = 0
 
@@ -89,6 +94,25 @@ class Driver(Node):
             instrStr = token
         print("!!!!!!! "+instrStr)
         self.ser.write(instrStr.encode())
+    
+    def serialPubJoints(self):
+        self.ser.write(b'j\n')
+        response = self.ser.readline().decode().strip()
+        joint_names = ["joint1", "joint2", "joint3", "joint4", "joint5", "joint6", "joint7", "joint8", "joint9"]
+
+        try:
+            angles = list(map(float, response.split(',')))
+        except ValueError:
+            self.get_logger().error("Failed to parse joint angles")
+            return
+
+        joint_state_msg = JointState()
+        joint_state_msg.header.stamp = self.get_clock().now().to_msg()
+        joint_state_msg.name = joint_names
+        joint_state_msg.position = angles
+
+        self.joint_state_publisher.publish(joint_state_msg)
+        self.get_logger().info("Joint angles published")
 
 
 def main(args=None):
