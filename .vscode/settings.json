@@ -55,6 +55,7 @@
         "noqa",
         "Petoi",
         "pvporcupine",
+        "pvrecorder",
         "pytest",
         "rclcpp",
         "rclpy",
