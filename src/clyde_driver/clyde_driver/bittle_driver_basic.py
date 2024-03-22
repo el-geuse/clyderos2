@@ -20,10 +20,6 @@ class Driver(Node):
         self.subscription = self.create_subscription(Twist, "/cmd_vel", self.callback, 10)
         self.subscription  # prevent unused variable warning
 
-        self.joint_state_publisher = self.create_publisher(JointState, '/joint_states', 10)
-        self.joint_state_publisher # prevent unused variable warning
-        self.time = self.create_timer(0.01, self.publish_joint_angles)   
-
         self.dir = 0
 
         self.ser = serial.Serial(
@@ -94,27 +90,6 @@ class Driver(Node):
             instrStr = token
         print("!!!!!!! "+instrStr)
         self.ser.write(instrStr.encode())
-    
-    def serialPubJoints(self):
-        self.ser.write(b'j\n')
-        response = self.ser.readline().decode().strip()
-        joint_names = ["neck_joint", "shrfs_joint", "shrft_joint", "shrrs_joint", "shrrt_joint", \
-                       "shlfs_joint", "shlft_joint", "shlrs_joint", "shlrt_joint"]
-
-        try:
-            angles = list(map(float, response.split(',')))
-        except ValueError:
-            self.get_logger().error("Failed to parse joint angles")
-            return
-
-        joint_state_msg = JointState()
-        joint_state_msg.header.stamp = self.get_clock().now().to_msg()
-        joint_state_msg.name = joint_names
-        joint_state_msg.position = angles
-
-        self.joint_state_publisher.publish(joint_state_msg)
-        self.get_logger().info("Joint angles published")
-
 
 def main(args=None):
     rclpy.init()
