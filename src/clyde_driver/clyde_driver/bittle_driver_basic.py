@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
+import re
+import time
 import rclpy
-from rclpy.node import Node
 import serial
 import struct
+from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import JointState
 
@@ -17,12 +19,16 @@ class Driver(Node):
 
     def __init__(self, port='/dev/ttyS0'):
         super().__init__('cmd_vel_listener')
-        self.subscription = self.create_subscription(Twist, "/cmd_vel", self.callback, 10)
+        self.subscription = self.create_subscription(Twist, "/cmd_vel", self.vel_callback, 10)
         self.subscription  # prevent unused variable warning
-
-        self.joint_state_publisher = self.create_publisher(JointState, '/joint_states', 10)
-        self.joint_state_publisher # prevent unused variable warning
-        self.time = self.create_timer(0.01, self.publish_joint_angles)   
+        
+        # JointState publisher
+        self.joint_state_publisher = self.create_publisher(JointState, 'joint_states', 10)
+        self.joint_state_timer = self.create_timer(0.1, self.joint_state_callback)  # 10Hz
+        self.process_next_as_values = False
+        
+        self.joint_names = ["neck_joint", "shrfs_joint", "shrft_joint", "shrrs_joint", "shrrt_joint", \
+                            "shlfs_joint", "shlft_joint", "shlrs_joint", "shlrt_joint"]
 
         self.dir = 0
 
@@ -34,7 +40,7 @@ class Driver(Node):
             bytesize=serial.EIGHTBITS,
             timeout=1)
 
-    def callback(self, msg):
+    def vel_callback(self, msg):
         self.get_logger().info("Received a /cmd_vel message!")
         self.get_logger().info(
             "Linear Components: [%f, %f, %f]" % (msg.linear.x, msg.linear.y, msg.linear.z))
@@ -55,6 +61,63 @@ class Driver(Node):
         if self.dir != dir:
             self.wrapper([dir_dict[dir], 0])
             self.dir = dir
+    
+    # def joint_state_callback(self):
+    #     self.ser.write(b'j\n')  # Command to request joint angles
+    #     time.sleep(0.05)  # Short pause to ensure data is fully received
+    #     if self.ser.in_waiting:
+    #         data = self.ser.readline().decode('utf-8').strip()  # Reading the response
+    #         #self.get_logger().info(f"Raw data received: {data}")  # Log the raw data for debugging
+
+    #         # Use regular expression to find all numbers in the string
+    #         numbers = re.findall(r"[-+]?\d*\.\d+|\d+", data)
+
+    #         # Attempt to parse the numbers into floats
+    #         try:
+    #             if numbers:
+    #                 angles = list(map(float, numbers))[:9]  # Convert to float and take first 9
+    #                 # Create and publish the JointState message
+    #                 msg = JointState()
+    #                 msg.header.stamp = self.get_clock().now().to_msg()
+    #                 msg.name = self.joint_names[:len(angles)]  # Ensure names list matches number of angles
+    #                 msg.position = angles
+    #                 self.joint_state_publisher.publish(msg)
+    #                 self.get_logger().info(f'Publishing JointState: {angles}')
+    #             else:
+    #                 self.get_logger().warn("No valid numbers found in the data.")
+    #         except ValueError as e:
+    #             self.get_logger().error(f"Error parsing joint angles: {e}")
+
+    def joint_state_callback(self):
+        self.ser.write(b'j\n')  # Request joint angles
+        time.sleep(0.05)  # Wait for the Bittle's response
+        if self.ser.in_waiting:
+            data = self.ser.readline().decode('utf-8').strip()  # Read the response
+            self.get_logger().info(f"Raw data received: {data}")  # Log for debugging
+
+            # Use regular expression to find all numbers in the string
+            numbers = re.findall(r"[-+]?\d*\.\d+|\d+", data)
+
+            if self.process_next_as_values:  # Ensure this is the array with angles
+                try:
+                    if numbers:
+                        # Extract relevant joint angles using list comprehension and mapping
+                        # Include joint 0 and joints 9-15
+                        relevant_angles = [float(numbers[0])] + [float(numbers[i]) for i in range(9, 16)]
+                        msg = JointState()
+                        msg.header.stamp = self.get_clock().now().to_msg()
+                        # Adjust this list to match the specific joints you're working with
+                        msg.name = ['joint0'] + [f'joint{i}' for i in range(9, 16)]
+                        msg.position = relevant_angles
+                        self.joint_state_publisher.publish(msg)
+                        self.get_logger().info(f'Publishing JointState: {relevant_angles}')
+                    else:
+                        self.get_logger().warn("No valid numbers found in the data.")
+                except ValueError as e:
+                    self.get_logger().error(f"Error parsing joint angles: {e}")
+            self.process_next_as_values = not self.process_next_as_values  # Toggle for next set
+
+
 
     def wrapper(self, task):  # Structure is [token, var=[], time]
         print(task)
@@ -64,7 +127,7 @@ class Driver(Node):
             self.serialWriteNumToByte(task[0], task[1])
         else:
             self.serialWriteByte(task[1])
-        self.sleep(task[-1])
+        time.sleep(task[-1])
 
     def serialWriteNumToByte(self, token, var=[]):  # Only to be used for c m u b i l o
         # print("Num Token "); print(token);print(" var ");print(var);print("\n\n");
@@ -94,27 +157,6 @@ class Driver(Node):
             instrStr = token
         print("!!!!!!! "+instrStr)
         self.ser.write(instrStr.encode())
-    
-    def serialPubJoints(self):
-        self.ser.write(b'j\n')
-        response = self.ser.readline().decode().strip()
-        joint_names = ["neck_joint", "shrfs_joint", "shrft_joint", "shrrs_joint", "shrrt_joint", \
-                       "shlfs_joint", "shlft_joint", "shlrs_joint", "shlrt_joint"]
-
-        try:
-            angles = list(map(float, response.split(',')))
-        except ValueError:
-            self.get_logger().error("Failed to parse joint angles")
-            return
-
-        joint_state_msg = JointState()
-        joint_state_msg.header.stamp = self.get_clock().now().to_msg()
-        joint_state_msg.name = joint_names
-        joint_state_msg.position = angles
-
-        self.joint_state_publisher.publish(joint_state_msg)
-        self.get_logger().info("Joint angles published")
-
 
 def main(args=None):
     rclpy.init()
@@ -128,3 +170,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+    
