@@ -6,7 +6,7 @@ import struct
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import JointState
 
-dir_dict = {1: 'kwk',          # walk forward
+dir_dict = {1: 'kwkF',          # walk forward
             -1: 'kbk',          # walk backwards
             2: 'kcrR',         # crawl to the right
             3: 'kcrL',         # crawl to the left
@@ -22,13 +22,13 @@ class Driver(Node):
 
         self.joint_state_publisher = self.create_publisher(JointState, '/joint_states', 10)
         self.joint_state_publisher # prevent unused variable warning
-        self.time = self.create_timer(0.1, self.publish_joint_angles)   # 10Hz
+        self.time = self.create_timer(0.01, self.publish_joint_angles)   
 
         self.dir = 0
 
         self.ser = serial.Serial(
             port=port,
-            baudrate=57600,
+            baudrate=115200,
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
             bytesize=serial.EIGHTBITS,
@@ -98,7 +98,8 @@ class Driver(Node):
     def serialPubJoints(self):
         self.ser.write(b'j\n')
         response = self.ser.readline().decode().strip()
-        joint_names = ["joint1", "joint2", "joint3", "joint4", "joint5", "joint6", "joint7", "joint8", "joint9"]
+        joint_names = ["neck_joint", "shrfs_joint", "shrft_joint", "shrrs_joint", "shrrt_joint", \
+                       "shlfs_joint", "shlft_joint", "shlrs_joint", "shlrt_joint"]
 
         try:
             angles = list(map(float, response.split(',')))
