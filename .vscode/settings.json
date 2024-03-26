@@ -50,6 +50,7 @@
         "devcontainer",
         "gzclient",
         "gzserver",
+        "imgmsg",
         "imshow",
         "ints",
         "kbalance",

@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
 
-import cv2
 import mediapipe as mp
 
 
@@ -14,11 +12,11 @@ class LivePersonLocationDetector:
         self.pose = self.mp_pose.Pose()
 
     def process_frame(self, frame):
-        # Convert the BGR frame to RGB
-        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        # # Convert the BGR frame to RGB
+        # frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         # Process the frame with MediaPipe Pose
-        results = self.pose.process(frame_rgb)
+        results = self.pose.process(frame)
 
         h, w, _ = frame.shape
         image_center = (w // 2, h // 2)
@@ -41,37 +39,34 @@ class LivePersonLocationDetector:
         self.pose.close()
 
 
-# Example usage for a live video stream (or video file)
-def main(video_source=0):  # Use 0 for webcam
-    video_detector = LivePersonLocationDetector()
-    cap = cv2.VideoCapture(video_source)
+# # Example usage for a live video stream (or video file)
+# def main():  # Use 0 for webcam
+#     video_detector = LivePersonLocationDetector()
+#     cap = cv2.VideoCapture(video_source)
 
-    if not cap.isOpened():
-        print("Error: Could not open video source.")
-        return
+#     if not cap.isOpened():
+#         print("Error: Could not open video source.")
+#         return
 
-    while cap.isOpened():
-        ret, frame = cap.read()
-        if not ret:
-            break
+#     while cap.isOpened():
+#         ret, frame = cap.read()
+#         if not ret:
+#             break
 
-        location = video_detector.process_frame(frame)
-        if location:
-            print(f"Live Location: X = {location['X']:.2f} m, Z = {location['Z']:.2f} m")
-            # Integrate with your robot's navigation system
+#         location = video_detector.process_frame(frame)
+#         if location:
+#             print(f"Live Location: X = {location['X']:.2f} m, Z = {location['Z']:.2f} m")
+#             # Integrate with your robot's navigation system
 
-        # Optional: Show the frame for debugging purposes
-        cv2.imshow('Frame', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+#         # Optional: Show the frame for debugging purposes
+#         cv2.imshow('Frame', frame)
+#         if cv2.waitKey(1) & 0xFF == ord('q'):
+#             break
 
-    cap.release()
-    video_detector.close()
-    cv2.destroyAllWindows()
-
-
-if __name__ == "__main__":
-    main()
+#     cap.release()
+#     video_detector.close()
+#     cv2.destroyAllWindows()
 
 
-# In[ ]:
+# if __name__ == "__main__":
+#     main()
