@@ -8,13 +8,13 @@ import struct
 import time
 import re
 
-dir_dict = {0: 'kbalance',      # balance (stay still)
-            1: 'kwk',           # walk forward
+dir_dict = {1: 'kwkF',           # walk forward
             -1: 'kbk',          # walk backwards
             2: 'kcrR',          # crawl to the right
             3: 'kcrL',          # crawl to the left
             4: 'ktrR',          # trot to the right
-            5: 'ktrL'}          # trot to the left
+            5: 'ktrL',          # trot to the left
+            0: 'kbalance',}      # balance (stay still)
 
 
 class Driver(Node):
@@ -46,9 +46,9 @@ class Driver(Node):
         elif msg.linear.x < 0:
             dir = -1
         elif msg.angular.z > 0:
-            dir = 4
-        elif msg.angular.z < 0:
             dir = 5
+        elif msg.angular.z < 0:
+            dir = 4
         else:
             dir = 0
 
