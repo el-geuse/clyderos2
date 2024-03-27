@@ -5,6 +5,7 @@ from sensor_msgs.msg import JointState
 import serial
 import time
 import re
+import math
 
 class JointAngleReader(Node):
     def __init__(self):
@@ -47,16 +48,18 @@ class JointAngleReader(Node):
             self.get_logger().error('Attempted to publish None joint_angles.')
             return
 
+        rad_angles = [math.radians(angle) for angle in joint_angles]
+
         # Debugging print
-        print(f"Publishing Joint Angles: {joint_angles}")
+        print(f"Publishing Joint Angles: {rad_angles}")
 
         msg = JointState()
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.name = ['neck_joint', 'shlfs_joint', 'shrfs_joint', 'shrrs_joint', 'shlrs_joint', 'shlft_joint', 'shrft_joint', 'shrrt_joint', 'shlrt_joint']  # Adjust as necessary
-        selected_angles = [joint_angles[0]] + joint_angles[-8:]
+        selected_angles = [rad_angles[0]] + rad_angles[-8:]
         msg.position = selected_angles
         self.joint_state_publisher.publish(msg)
-        self.get_logger().info('Publishing JointState')
+        self.get_logger().info('Publishing JointState in radians')
 
 def main(args=None):
     rclpy.init(args=args)
